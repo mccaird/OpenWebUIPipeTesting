@@ -14,6 +14,9 @@ class Pipe:
         emit_interval: float = Field(
             default=2.0, description="Interval in seconds between status emissions"
         )
+        enable_status_indicator: bool = Field(
+            default=True, description="Enable or disable status indicator emissions"
+        )
 
     def __init__(self):
         self.type = "pipe"
