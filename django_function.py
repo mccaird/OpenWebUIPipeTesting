@@ -7,11 +7,13 @@ import requests
 
 class Pipe:
     class Valves(BaseModel):
-        django_api_url: str  # Replace n8n_url
-        django_auth_token: str  # Replace n8n_bearer_token
-        input_field: str = "input"
-        response_field: str = "response"
-        emit_interval: float = 0.1
+        django_api_url: str = Field(default="") # Replace n8n_url
+        django_auth_token: str = Field(default="") # Replace n8n_bearer_token
+        input_field: str = Field(default="chatInput")
+        response_field: str = Field(default="output")
+        emit_interval: float = Field(
+            default=2.0, description="Interval in seconds between status emissions"
+        )
 
     def __init__(self):
         self.type = "pipe"
