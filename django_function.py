@@ -99,3 +99,20 @@ class Pipe:
                     True,
                 )
                 return {"error": str(e)}
+        # If no message is available alert user
+        else:
+            await self.emit_status(
+                __event_emitter__,
+                "error",
+                "No messages found in the request body",
+                True,
+            )
+            body["messages"].append(
+                {
+                    "role": "assistant",
+                    "content": "No messages found in the request body",
+                }
+            )
+
+        await self.emit_status(__event_emitter__, "info", "Complete", True)
+        return django_response
